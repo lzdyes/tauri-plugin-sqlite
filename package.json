@@ -1,0 +1,29 @@
+{
+  "name": "tauri-plugin-sqlite-api",
+  "description": "A Tauri plugin for interface to SQLite",
+  "version": "0.1.0",
+  "author": "lzdyes <lzdyes@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lzdyes/tauri-plugin-sqlite"
+  },
+  "browser": "webview-dist/index.js",
+  "main": "webview-dist/index.js",
+  "types": "webview-dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c ./webview-src/rollup.config.js",
+    "prepublishOnly": "yarn build",
+    "pretest": "yarn build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "1.0.0-rc.4",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-typescript": "8.3.2",
+    "rollup": "2.72.0",
+    "rollup-plugin-terser": "7.0.2",
+    "typescript": "4.6.4"
+  }
+}

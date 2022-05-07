@@ -1,0 +1,16 @@
+[package]
+name = "tauri-plugin-sqlite"
+version = "0.1.0"
+authors = [ "lzdyes" ]
+description = "A Tauri plugin for interface to SQLite"
+repository = "https://github.com/lzdyes/tauri-plugin-sqlite"
+edition = "2021"
+rust-version = "1.57"
+exclude = ["/examples", "/webview-dist", "/webview-src", "node_modules"]
+
+[dependencies]
+tauri = "1.0.0-rc.8"
+serde = "1.0"
+serde_json = "1.0"
+thiserror = "1.0"
+sqlite = "0.26.0"
