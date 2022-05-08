@@ -72,7 +72,7 @@ const rows = await db.select<Array<{ count: number }>>('SELECT COUNT(*) as count
 const rows = await db.select<Array<{ name: string }>>('SELECT name FROM users WHERE age > ?', [20])
 
 /** select with params */
-const rows = await db.select<Array<{ name: string, age: number }>>('SELECT * FROM users LIMIT ?1 OFFSET ?2', [10, 0])
+const rows = await db.select<Array<any>>('SELECT * FROM users LIMIT $1 OFFSET $2', [10, 0])
 ```
 
 ## License
