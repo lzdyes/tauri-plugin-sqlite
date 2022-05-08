@@ -14,10 +14,9 @@ This plugin provides a "classical" Tauri Plugin interface to SQLite database thr
 [dependencies.tauri-plugin-sqlite]
 git = "https://github.com/lzdyes/tauri-plugin-sqlite"
 tag = "v0.1.0"
-# branch = "main"
 ```
 
-### Web
+### Webview
 
 ```
 npm install github:lzdyes/tauri-plugin-sqlite#v0.1.0
@@ -29,7 +28,7 @@ yarn add github:lzdyes/tauri-plugin-sqlite#v0.1.0
 
 ### Rust
 
-Use in `src-tauri/src/main.rs`:
+`src-tauri/src/main.rs`
 
 ```rust
 fn main() {
@@ -74,6 +73,10 @@ const rows = await db.select<Array<{ name: string }>>('SELECT name FROM users WH
 /** select with params */
 const rows = await db.select<Array<any>>('SELECT * FROM users LIMIT $1 OFFSET $2', [10, 0])
 ```
+
+## Contribute
+
+Contributions are welcome! please open issues and pull request :)
 
 ## License
 
