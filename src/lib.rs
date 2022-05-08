@@ -51,14 +51,14 @@ macro_rules! bind {
 struct SqliteMap(Mutex<HashMap<String, Connection>>);
 
 #[command]
-fn open(state: State<'_, SqliteMap>, path: String) -> Result<bool> {
+async fn open(state: State<'_, SqliteMap>, path: String) -> Result<bool> {
   let connection = Connection::open(&path)?;
   state.0.lock().unwrap().insert(path.clone(), connection);
   Ok(true)
 }
 
 #[command]
-fn execute(state: State<'_, SqliteMap>, path: String, sql: String) -> Result<bool> {
+async fn execute(state: State<'_, SqliteMap>, path: String, sql: String) -> Result<bool> {
   let mut map = state.0.lock().unwrap();
   let connection = map.get_mut(&path).ok_or(Error::DatabaseNotOpened(path))?;
   connection.execute(&sql)?;
@@ -66,7 +66,7 @@ fn execute(state: State<'_, SqliteMap>, path: String, sql: String) -> Result<boo
 }
 
 #[command]
-fn execute2(
+async fn execute2(
   state: State<'_, SqliteMap>,
   path: String,
   sql: String,
@@ -94,7 +94,7 @@ fn execute2(
 }
 
 #[command]
-fn select(
+async fn select(
   state: State<'_, SqliteMap>,
   path: String,
   sql: String,
