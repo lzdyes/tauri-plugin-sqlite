@@ -68,10 +68,11 @@ await db.execute('INSERT INTO users VALUES (?1, ?2)', [
 /** select count */
 const rows = await db.select<Array<{ count: number }>>('SELECT COUNT(*) as count FROM users')
 
-/** select with params */
+/** select with param */
 const rows = await db.select<Array<{ name: string }>>('SELECT name FROM users WHERE age > ?', [20])
 
-const rows = await db.select<Array<any>>('SELECT * FROM users LIMIT ?1 OFFSET ?2', [10, 0])
+/** select with params */
+const rows = await db.select<Array<{ name: string, age: number }>>('SELECT * FROM users LIMIT ?1 OFFSET ?2', [10, 0])
 ```
 
 ## License
