@@ -11,6 +11,10 @@ export default class SQLite {
     return await invoke<string>('plugin:sqlite|open', { path }).then(() => new SQLite(path))
   }
 
+  async close(): Promise<boolean> {
+    return invoke('plugin:sqlite|close', { path: this.path })
+  }
+
   async execute(sql: string, values?: unknown[]): Promise<boolean> {
     return values ? invoke('plugin:sqlite|execute2', { path: this.path, sql, values }) : invoke('plugin:sqlite|execute', { path: this.path, sql })
   }

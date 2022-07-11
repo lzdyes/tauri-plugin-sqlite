@@ -1,7 +1,7 @@
 {
   "name": "tauri-plugin-sqlite-api",
   "description": "A Tauri plugin for interface to SQLite",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "lzdyes <lzdyes@gmail.com>",
   "repository": {
     "type": "git",

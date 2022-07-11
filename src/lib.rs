@@ -58,6 +58,15 @@ async fn open(state: State<'_, SqliteMap>, path: String) -> Result<bool> {
 }
 
 #[command]
+async fn close(state: State<'_, SqliteMap>, path: String) -> Result<bool> {
+  let mut map = state.0.lock().unwrap();
+  let connection = map.get_mut(&path).ok_or(Error::DatabaseNotOpened(path.clone()))?;
+  drop(connection);
+  map.remove(&path);
+  Ok(true)
+}
+
+#[command]
 async fn execute(state: State<'_, SqliteMap>, path: String, sql: String) -> Result<bool> {
   let mut map = state.0.lock().unwrap();
   let connection = map.get_mut(&path).ok_or(Error::DatabaseNotOpened(path))?;
@@ -148,7 +157,7 @@ async fn select(
 
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
   Builder::new("sqlite")
-    .invoke_handler(tauri::generate_handler![open, execute, execute2, select])
+    .invoke_handler(tauri::generate_handler![open, close, execute, execute2, select])
     .setup(|app| {
       app.manage(SqliteMap::default());
       Ok(())
