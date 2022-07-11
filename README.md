@@ -13,15 +13,15 @@ This plugin provides a "classical" Tauri Plugin interface to SQLite database thr
 ```toml
 [dependencies.tauri-plugin-sqlite]
 git = "https://github.com/lzdyes/tauri-plugin-sqlite"
-tag = "v0.1.0"
+tag = "v0.1.1"
 ```
 
 ### Webview
 
 ```
-npm install github:lzdyes/tauri-plugin-sqlite#v0.1.0
+npm install github:lzdyes/tauri-plugin-sqlite#v0.1.1
 # or
-yarn add github:lzdyes/tauri-plugin-sqlite#v0.1.0
+yarn add github:lzdyes/tauri-plugin-sqlite#v0.1.1
 ```
 
 ## Usage
@@ -70,8 +70,11 @@ const rows = await db.select<Array<{ count: number }>>('SELECT COUNT(*) as count
 /** select with param */
 const rows = await db.select<Array<{ name: string }>>('SELECT name FROM users WHERE age > ?', [20])
 
-/** select with params */
+/** select with params, you can use ? or $1 .. $n */
 const rows = await db.select<Array<any>>('SELECT * FROM users LIMIT $1 OFFSET $2', [10, 0])
+
+/** close sqlite database */
+const isClosed = await db.close()
 ```
 
 ## Contribute
